@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #7f00ff, #e100ff);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px 30px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 400px;
+      color: white;
+      text-align: center;
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .container.fade-out {
+      opacity: 0;
+      transform: scale(0.92);
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-size: 30px;
+      color: #fff;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 18px;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    input::placeholder {
+      color: #eee;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      background: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, #8e2de2, #4a00e0);
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(142, 45, 226, 0.5);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 18px rgba(142, 45, 226, 0.8);
+    }
+
+    @media (max-width: 500px) {
+      h2 {
+        font-size: 24px;
+      }
+
+      input, button {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="signupBox">
+    <h2>Join My Vide!</h2>
+    <input id="name" placeholder="Full Name">
+    <input id="email" placeholder="Email">
+    <input id="mobile" placeholder="Mobile">
+    <input id="password" type="password" placeholder="Password">
+    <input id="address" placeholder="Address">
+    <button onclick="signup()">Sign Up</button>
+  </div>
+
+  <script>
+    function signup() {
+      const user = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        mobile: document.getElementById('mobile').value,
+        password: document.getElementById('password').value,
+        address: document.getElementById('address').value
+      };
+
+      localStorage.setItem('user', JSON.stringify(user));
+
+      const box = document.getElementById('signupBox');
+      box.classList.add('fade-out');
+
+      setTimeout(() => {
+        alert('Signup successful!');
+        window.location.href = "login.html";
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

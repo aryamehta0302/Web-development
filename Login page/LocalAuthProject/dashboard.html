@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #2c003e, #6a1b9a, #8e24aa);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .dashboard {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 50px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(156, 39, 176, 0.6);
+      backdrop-filter: blur(14px);
+      text-align: center;
+      animation: fadeSlide 0.8s ease forwards;
+      transform: translateY(-30px);
+      opacity: 0;
+    }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      color: #f3e5f5;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin: 10px;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+      cursor: pointer;
+      background: linear-gradient(to right, #ab47bc, #8e24aa);
+      color: white;
+      transition: 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #ce93d8, #ba68c8);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #e1bee7;
+    }
+
+    @keyframes fadeSlide {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h2 id="welcome">Hi, </h2>
+    <button onclick="window.location.href='change_password.html'">Change Password</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <script>
+    const name = localStorage.getItem('loggedInUser');
+    document.getElementById('welcome').innerText += name ? name : 'Guest';
+
+    function logout() {
+      localStorage.removeItem('loggedInUser');
+      alert("Logged out!");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
