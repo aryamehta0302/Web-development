@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Local Storage Example</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #2c003e, #6a1b9a, #8e24aa);
+      color: white;
+      text-align: center;
+      padding-top: 50px;
+      height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    #ans {
+      margin-bottom: 30px;
+      font-size: 20px;
+    }
+
+    input[type="button"] {
+      margin: 10px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(to right, #ab47bc, #8e24aa);
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease-in-out;
+    }
+
+    input[type="button"]:hover {
+      background: linear-gradient(to right, #ce93d8, #ba68c8);
+      transform: scale(1.05);
+      box-shadow: 0 0 10px #e1bee7;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Local Storage Demo</h1>
+  <p id="ans">Click a button to test localStorage.</p>
+
+  <input type="button" onclick="setValue()" value="Set Basic Value" />
+  <input type="button" onclick="getValue()" value="Get Basic Value" />
+  <input type="button" onclick="removeValue()" value="Remove Basic Value" />
+  <input type="button" onclick="removeAll()" value="Clear All" />
+  <br>
+  <input type="button" onclick="saveObj()" value="Save Object" />
+  <input type="button" onclick="getObj()" value="Get Object" />
+
+  <script>
+    function setValue() {
+      localStorage.setItem("name", "S");
+      localStorage.setItem("city", "Surat");
+      document.getElementById("ans").innerHTML = "Basic values saved.";
+    }
+
+    function getValue() {
+      const name = localStorage.getItem("name");
+      if (name !== null) {
+        document.getElementById("ans").innerHTML = "Stored Name: " + name;
+        console.log("Name:", name);
+      } else {
+        document.getElementById("ans").innerHTML = "No name found in localStorage.";
+      }
+    }
+
+    function removeValue() {
+      localStorage.removeItem("name");
+      document.getElementById("ans").innerHTML = "Name removed from localStorage.";
+    }
+
+    function removeAll() {
+      localStorage.clear();
+      document.getElementById("ans").innerHTML = "All localStorage data cleared.";
+    }
+
+    function saveObj() {
+      const user = {
+        name: "ABC",
+        gender: "Male",
+        mobile: 9948304844
+      };
+      localStorage.setItem("userdata", JSON.stringify(user));
+      document.getElementById("ans").innerHTML = "User object saved.";
+    }
+
+    function getObj() {
+      const data = localStorage.getItem("userdata");
+      if (data !== null) {
+        const userObj = JSON.parse(data);
+        document.getElementById("ans").innerHTML = `User Data:<br>Name: ${userObj.name}<br>Gender: ${userObj.gender}<br>Mobile: ${userObj.mobile}`;
+        console.log("User Object:", userObj);
+      } else {
+        document.getElementById("ans").innerHTML = "No user object found.";
+      }
+    }
+  </script>
+
+</body>
+</html>
